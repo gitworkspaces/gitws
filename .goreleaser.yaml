@@ -1,0 +1,44 @@
+project_name: gitws
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: gitws
+    main: ./cmd/gws
+    binary: gitws
+    env: [CGO_ENABLED=0]
+    goos: [darwin, linux]
+    goarch: [amd64, arm64]
+
+archives:
+  - id: default
+    builds: [gitws]
+    format: tar.gz
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    files: [README.md, LICENSE]
+
+checksums:
+  name_template: "checksums.txt"
+
+brews:
+  - name: gitws
+    tap:
+      owner: gitworkspaces
+      name: homebrew-tap
+    commit_author:
+      name: "gitws-bot"
+      email: "releases@gitws.dev"
+    folder: Formula
+    homepage: "https://gitws.dev"
+    description: "Separate work/personal Git identities. Keys, SSH aliases, and guards."
+    license: "MIT"
+    test: |
+      system "#{bin}/gitws", "--help"
+
+release:
+  github:
+    owner: gitworkspaces
+    name: gitws
+  draft: false
+  prerelease: false
