@@ -1,4 +1,4 @@
-package gws
+package cli
 
 import (
 	"fmt"
