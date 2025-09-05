@@ -1,207 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gitws - Never mix work/personal git again</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'gitws-blue': '#2563eb',
-                        'gitws-green': '#10b981',
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>gitws — Never mix work/personal git again</title>
+  <meta name="description" content="gitws keeps your work and personal Git identities perfectly isolated. Per-workspace SSH keys, aliases, identity guards. Brew install in seconds." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ctext y='0.9em' font-size='90'%3E🔐%3C/text%3E%3C/svg%3E">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme:{ extend:{ colors:{ gitws:'#2563eb', leaf:'#10b981' } } }
+    }
+  </script>
+  <style>
+    .glass{background:rgba(255,255,255,.08);backdrop-filter:saturate(180%) blur(14px)}
+    .code-btn{opacity:.85} .code-btn:hover{opacity:1}
+    .shadow-smooth{box-shadow:0 10px 30px rgba(0,0,0,.1)}
+  </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-gitws-blue to-blue-600 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                    gitws
-                </h1>
-                <p class="text-xl md:text-2xl mb-8 text-blue-100">
-                    Never mix work/personal git again
-                </p>
-                <div class="bg-gray-900 rounded-lg p-6 max-w-2xl mx-auto">
-                    <code class="text-green-400 text-lg">
-                        brew tap gitworkspaces/homebrew-tap<br>
-                        brew install gitws
-                    </code>
-                </div>
-            </div>
-        </div>
+<body class="bg-gray-50 text-gray-900">
+  <!-- Sticky Nav -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#top" class="font-semibold text-lg">gitws</a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="#install" class="hover:text-gitws">Install</a>
+        <a href="#why" class="hover:text-gitws">Why</a>
+        <a href="#how" class="hover:text-gitws">How it works</a>
+        <a href="#faq" class="hover:text-gitws">FAQ</a>
+      </nav>
+      <div class="flex gap-2">
+        <a href="#install" class="hidden sm:inline-block bg-gitws text-white px-3.5 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700">Install</a>
+        <a href="https://github.com/gitworkspaces/gitws" class="inline-block border border-gray-300 px-3.5 py-2 rounded-lg text-sm font-semibold hover:bg-gray-100">GitHub</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="top" class="relative bg-gradient-to-br from-gitws to-blue-600 text-white">
+    <div class="absolute inset-0 opacity-20" aria-hidden="true"></div>
+    <div class="max-w-7xl mx-auto px-4 py-20 md:py-28 text-center">
+      <h1 class="text-4xl md:text-6xl font-black leading-tight">Never mix work/personal git again</h1>
+      <p class="mt-5 text-lg md:text-xl text-blue-100 max-w-2xl mx-auto">
+        Per-workspace SSH keys and aliases. Automatic identity per repo. Guard hooks to stop “oops” commits.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="#install" class="bg-white text-gitws px-6 py-3 rounded-xl font-semibold shadow-smooth hover:bg-gray-50">Install with Homebrew</a>
+        <a href="https://github.com/gitworkspaces/gitws" class="glass px-6 py-3 rounded-xl font-semibold border border-white/20">⭐ Star on GitHub</a>
+      </div>
+
+      <!-- Social proof strip -->
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4 text-sm text-blue-100/90">
+        <span class="inline-flex items-center gap-2 bg-white/10 rounded-full px-3 py-1 border border-white/10">MIT Licensed</span>
+        <span class="inline-flex items-center gap-2 bg-white/10 rounded-full px-3 py-1 border border-white/10">Brew Tap: gitworkspaces/homebrew-tap</span>
+        <span class="inline-flex items-center gap-2 bg-white/10 rounded-full px-3 py-1 border border-white/10">macOS & Linux</span>
+        <!-- <a href="mailto:hello@gitws.dev?subject=Join%20the%20gitws%20waitlist" class="inline-flex items-center gap-2 bg-white/10 rounded-full px-3 py-1 border border-white/10 hover:bg-white/20">Join Waitlist ↗</a> -->
+      </div>
+
+      <!-- Install code -->
+      <div class="mt-10 max-w-2xl mx-auto bg-gray-900 rounded-2xl p-5 relative text-left">
+        <button data-copy="#brew" class="code-btn absolute top-3 right-3 text-xs bg-white/10 border border-white/20 px-2.5 py-1.5 rounded-md hover:bg-white/20">Copy</button>
+        <pre class="overflow-x-auto text-green-400 text-sm leading-relaxed"><code id="brew">brew tap gitworkspaces/homebrew-tap
+brew install gitws</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it's for -->
+  <section id="why" class="max-w-7xl mx-auto px-4 py-16">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-bold">Who is gitws for?</h2>
+      <p class="text-gray-600 mt-2">Anyone juggling more than one Git identity and tired of manual SSH gymnastics.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white rounded-xl p-6 shadow-sm border">
+        <div class="text-2xl mb-2">👔</div>
+        <h3 class="font-semibold">Employees & contractors</h3>
+        <p class="text-gray-600 text-sm mt-1">Keep corporate repos locked to a work identity—no accidental personal commits.</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm border">
+        <div class="text-2xl mb-2">🧑‍💻</div>
+        <h3 class="font-semibold">OSS maintainers</h3>
+        <p class="text-gray-600 text-sm mt-1">Contribute freely without contaminating your employer’s identity.</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm border">
+        <div class="text-2xl mb-2">🛡️</div>
+        <h3 class="font-semibold">Security-minded teams</h3>
+        <p class="text-gray-600 text-sm mt-1">Guard hooks block pushes from the wrong persona by mistake.</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm border">
+        <div class="text-2xl mb-2">🚀</div>
+        <h3 class="font-semibold">Speed freaks</h3>
+        <p class="text-gray-600 text-sm mt-1">Initialize, clone, and ship — no docs to memorize.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why it wins vs manual setup -->
+  <section class="max-w-7xl mx-auto px-4 pb-4">
+    <div class="bg-white border rounded-2xl p-6 shadow-sm">
+      <h3 class="text-xl font-semibold mb-4">Why gitws beats manual SSH + gitconfig juggling</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="text-left text-gray-500">
+              <th class="py-2 pr-4">Feature</th>
+              <th class="py-2 pr-4">Manual</th>
+              <th class="py-2">gitws</th>
+            </tr>
+          </thead>
+          <tbody class="align-top">
+            <tr class="border-t">
+              <td class="py-3 pr-4 font-medium">Per-workspace SSH keys</td>
+              <td class="py-3 pr-4">Guide-driven, error-prone</td>
+              <td class="py-3">Auto-generated & labeled</td>
+            </tr>
+            <tr class="border-t">
+              <td class="py-3 pr-4 font-medium">Host aliases</td>
+              <td class="py-3 pr-4">Hand-edit <code>~/.ssh/config</code></td>
+              <td class="py-3">Idempotent managed blocks</td>
+            </tr>
+            <tr class="border-t">
+              <td class="py-3 pr-4 font-medium">Per-repo identity</td>
+              <td class="py-3 pr-4">Remember to set each repo</td>
+              <td class="py-3">Applied on clone + fix</td>
+            </tr>
+            <tr class="border-t">
+              <td class="py-3 pr-4 font-medium">Safety guards</td>
+              <td class="py-3 pr-4">DIY hooks</td>
+              <td class="py-3">Pre-commit/push guard installer</td>
+            </tr>
+            <tr class="border-t">
+              <td class="py-3 pr-4 font-medium">Repeatability</td>
+              <td class="py-3 pr-4">Brittle</td>
+              <td class="py-3">Idempotent + backups</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-5">
+        <a href="#install" class="inline-block bg-gitws text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700">Install gitws</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works / Quickstart -->
+  <section id="how" class="max-w-7xl mx-auto px-4 py-16">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-bold">Set up in 60 seconds</h2>
+      <p class="text-gray-600">Initialize workspaces → clone → guard.</p>
     </div>
 
-    <!-- Features Section -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Features</h2>
-            <p class="text-xl text-gray-600">Production-ready Git workspace isolation</p>
-        </div>
+    <div class="grid xs:grid-cols-1 lg:grid-cols-2 lg:gap-x-8 gap-y-8">
+      <div class="bg-white rounded-2xl border shadow-sm p-6 relative">
+        <h3 class="font-semibold mb-3">1) Initialize workspaces</h3>
+        <button data-copy="#init" class="code-btn absolute top-4 right-4 text-xs bg-gray-100 px-2.5 py-1.5 rounded-md border">Copy</button>
+        <pre class="bg-gray-900 rounded-xl p-4 overflow-x-auto text-green-400 text-sm text-wrap"><code id="init">gitws init work --email you@work.com --host github
+gitws init personal --email you@me.com --host github</code></pre>
+      </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="text-3xl mb-4">🔑</div>
-                <h3 class="text-xl font-semibold mb-2">Per-workspace SSH Keys</h3>
-                <p class="text-gray-600">Automatic generation and management of SSH keys for each workspace.</p>
-            </div>
+      <div class="bg-white rounded-2xl border shadow-sm p-6 relative">
+        <h3 class="font-semibold mb-3">2) Clone repos</h3>
+        <button data-copy="#clone" class="code-btn absolute top-4 right-4 text-xs bg-gray-100 px-2.5 py-1.5 rounded-md border">Copy</button>
+        <pre class="bg-gray-900 rounded-xl p-4 overflow-x-auto text-green-400 text-sm text-wrap"><code id="clone">gitws clone work XY-Corp/XY-Mind-Platform
+gitws clone personal myorg/myrepo</code></pre>
+      </div>
 
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="text-3xl mb-4">🔗</div>
-                <h3 class="text-xl font-semibold mb-2">SSH Aliases</h3>
-                <p class="text-gray-600">Clean, predictable host aliases like <code>github-work</code> and <code>gitlab-personal</code>.</p>
-            </div>
+      <div class="bg-white rounded-2xl border shadow-sm p-6 relative">
+        <h3 class="font-semibold mb-3">3) Guard & verify</h3>
+        <button data-copy="#guard" class="code-btn absolute top-4 right-4 text-xs bg-gray-100 px-2.5 py-1.5 rounded-md border">Copy</button>
+        <pre class="bg-gray-900 rounded-xl p-4 overflow-x-auto text-green-400 text-sm text-wrap"><code id="guard">gitws doctor
+gitws fix --yes --enable-guards</code></pre>
+      </div>
 
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="text-3xl mb-4">👤</div>
-                <h3 class="text-xl font-semibold mb-2">Per-repo Identity</h3>
-                <p class="text-gray-600">Automatic user.name/user.email configuration for each repository.</p>
-            </div>
-
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="text-3xl mb-4">✍️</div>
-                <h3 class="text-xl font-semibold mb-2">Signing Support</h3>
-                <p class="text-gray-600">SSH and GPG commit signing with proper key management.</p>
-            </div>
-
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="text-3xl mb-4">🛡️</div>
-                <h3 class="text-xl font-semibold mb-2">Guard Hooks</h3>
-                <p class="text-gray-600">Prevent accidental identity mixing with pre-commit/pre-push hooks.</p>
-            </div>
-
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="text-3xl mb-4">🔍</div>
-                <h3 class="text-xl font-semibold mb-2">Doctor Mode</h3>
-                <p class="text-gray-600">Diagnose and fix configuration issues automatically.</p>
-            </div>
-        </div>
+      <div class="bg-white rounded-2xl border shadow-sm p-6">
+        <h3 class="font-semibold mb-3">Works with your stack</h3>
+        <ul class="text-gray-700 space-y-2 text-sm">
+          <li>• GitHub, GitLab, Bitbucket (or custom host via <code>--host-name</code>)</li>
+          <li>• macOS & Linux, Homebrew install</li>
+          <li>• No telemetry. Local-only operations.</li>
+          <li>• Idempotent edits with automatic backups</li>
+        </ul>
+        <a href="https://github.com/gitworkspaces/gitws" class="mt-4 inline-block font-semibold hover:underline">View source on GitHub ↗</a>
+      </div>
     </div>
+  </section>
 
-    <!-- Quickstart Section -->
-    <div class="bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Quickstart</h2>
-                <p class="text-xl text-gray-600">Get started in minutes</p>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">1. Initialize Workspaces</h3>
-                    <div class="bg-gray-900 rounded-lg p-4">
-                        <code class="text-green-400">
-                            gitws init work --email you@work.com --host github<br>
-                            gitws init personal --email you@me.com --host github
-                        </code>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">2. Clone Repositories</h3>
-                    <div class="bg-gray-900 rounded-lg p-4">
-                        <code class="text-green-400">
-                            gitws clone work microsoft/vscode<br>
-                            gitws clone personal myorg/myrepo
-                        </code>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">3. Check Status</h3>
-                    <div class="bg-gray-900 rounded-lg p-4">
-                        <code class="text-green-400">
-                            gitws status<br>
-                            gitws doctor
-                        </code>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">4. Fix Issues</h3>
-                    <div class="bg-gray-900 rounded-lg p-4">
-                        <code class="text-green-400">
-                            gitws fix --yes --enable-guards
-                        </code>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- Install anchor (CTA) -->
+  <section id="install" class="bg-gradient-to-br from-white to-gray-100 border-t">
+    <div class="max-w-7xl mx-auto px-4 py-16">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold">Install with Homebrew</h2>
+        <p class="text-gray-600 mt-2">Two commands. That’s it.</p>
+      </div>
+      <div class="mt-8 max-w-2xl mx-auto bg-gray-900 rounded-2xl p-5 relative">
+        <button data-copy="#brew2" class="code-btn absolute top-3 right-3 text-xs bg-white/10 border border-white/20 px-2.5 py-1.5 rounded-md hover:bg-white/20">Copy</button>
+        <pre class="overflow-x-auto text-green-400 text-sm leading-relaxed"><code id="brew2">brew tap gitworkspaces/homebrew-tap
+brew install gitws</code></pre>
+      </div>
+      <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="https://github.com/gitworkspaces/gitws" class="bg-gitws text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700">Open GitHub</a>
+        <!-- <a href="mailto:hello@gitws.dev?subject=Join%20the%20gitws%20waitlist" class="border border-gray-300 px-6 py-3 rounded-xl font-semibold hover:bg-gray-100">Join Waitlist</a> -->
+      </div>
     </div>
+  </section>
 
-    <!-- Safety Section -->
-    <div class="bg-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Safety & Privacy</h2>
-                <p class="text-xl text-gray-600">Built with security and privacy in mind</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="text-3xl mb-4">🔒</div>
-                    <h3 class="text-lg font-semibold mb-2">No Telemetry</h3>
-                    <p class="text-gray-600">All operations are local with no data collection.</p>
-                </div>
-
-                <div class="text-center">
-                    <div class="text-3xl mb-4">🔄</div>
-                    <h3 class="text-lg font-semibold mb-2">Idempotent</h3>
-                    <p class="text-gray-600">Safe to run multiple times without side effects.</p>
-                </div>
-
-                <div class="text-center">
-                    <div class="text-3xl mb-4">💾</div>
-                    <h3 class="text-lg font-semibold mb-2">Automatic Backups</h3>
-                    <p class="text-gray-600">Backups created before any configuration changes.</p>
-                </div>
-
-                <div class="text-center">
-                    <div class="text-3xl mb-4">🏷️</div>
-                    <h3 class="text-lg font-semibold mb-2">Bounded Markers</h3>
-                    <p class="text-gray-600">Clear separation of managed vs manual configuration.</p>
-                </div>
-            </div>
-        </div>
+  <!-- FAQ -->
+  <section id="faq" class="max-w-7xl mx-auto px-4 py-16">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-bold">FAQ</h2>
+      <p class="text-gray-600">Short answers to common questions.</p>
     </div>
-
-    <!-- Links Section -->
-    <div class="bg-gitws-blue text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="text-center">
-                <h2 class="text-3xl font-bold mb-8">Get Started Today</h2>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="https://github.com/gitworkspaces/gitws" class="bg-white text-gitws-blue px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                        View on GitHub
-                    </a>
-                    <a href="https://github.com/gitworkspaces/homebrew-tap" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-gitws-blue transition-colors">
-                        Homebrew Tap
-                    </a>
-                </div>
-            </div>
-        </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white border rounded-xl p-6">
+        <h3 class="font-semibold">Does gitws phone home?</h3>
+        <p class="text-gray-600 mt-2">No. There’s no telemetry. All operations happen locally on your machine.</p>
+      </div>
+      <div class="bg-white border rounded-xl p-6">
+        <h3 class="font-semibold">Will this break my existing SSH config?</h3>
+        <p class="text-gray-600 mt-2">No. We write bounded “managed blocks” and create a backup before any change.</p>
+      </div>
+      <div class="bg-white border rounded-xl p-6">
+        <h3 class="font-semibold">Which hosts are supported?</h3>
+        <p class="text-gray-600 mt-2">GitHub, GitLab, Bitbucket, plus custom hosts via <code>--host-name</code>.</p>
+      </div>
+      <div class="bg-white border rounded-xl p-6">
+        <h3 class="font-semibold">Does it work with GitHub Desktop/VS Code?</h3>
+        <p class="text-gray-600 mt-2">Yes. Repos clone with the correct SSH alias, so your pushes use the right identity.</p>
+      </div>
     </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="text-center">
-                <script>
-                    function getCurrentYear() {
-                        return new Date().getFullYear();
-                    }
-                </script>
-                <p>&copy; 2024 - <script>document.write(getCurrentYear())</script> Okikiolu Technologies Inc. MIT License.</p>
-                <p class="text-gray-400 mt-2">Made with ❤️ for developers who care about Git hygiene.</p>
-            </div>
-        </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 py-10 text-center">
+      <div class="text-sm text-gray-300">© <span id="y"></span> gitworkspaces • MIT</div>
+      <div class="mt-3 flex items-center justify-center gap-3">
+        <a href="#install" class="bg-white text-gray-900 px-4 py-2 rounded-lg text-sm font-semibold">Install</a>
+        <a href="https://github.com/gitworkspaces/homebrew-tap" class="border border-white/20 px-4 py-2 rounded-lg text-sm">Brew Tap</a>
+        <a href="https://github.com/gitworkspaces/gitws" class="border border-white/20 px-4 py-2 rounded-lg text-sm">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // year
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // copy buttons
+    for (const btn of document.querySelectorAll('[data-copy]')) {
+      btn.addEventListener('click', async () => {
+        const sel = btn.getAttribute('data-copy');
+        const el = document.querySelector(sel);
+        try {
+          await navigator.clipboard.writeText(el.textContent.trim());
+          const old = btn.textContent; btn.textContent = 'Copied ✓';
+          setTimeout(()=>btn.textContent=old, 1200);
+        } catch { alert('Copy failed'); }
+      });
+    }
+  </script>
 </body>
 </html>
