@@ -70,7 +70,8 @@ func parseSSHURL(input string) (org, repo string, ok bool) {
 	re := regexp.MustCompile(`^git@([^:]+):([^/]+)/([^/]+)(?:\.git)?$`)
 	matches := re.FindStringSubmatch(input)
 	if len(matches) == 4 {
-		return matches[2], matches[3], true
+		repo = strings.TrimSuffix(matches[3], ".git")
+		return matches[2], repo, true
 	}
 
 	return "", "", false
