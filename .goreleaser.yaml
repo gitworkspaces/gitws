@@ -29,6 +29,7 @@ brews:
     repository:
       owner: gitworkspaces
       name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
     commit_author:
       name: "gitws-bot"
       email: "releases@gitws.dev"
