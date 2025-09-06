@@ -32,7 +32,7 @@ brews:
     commit_author:
       name: "gitws-bot"
       email: "releases@gitws.dev"
-    formula_folder: Formula
+    directory: Formula
     homepage: "https://gitws.dev"
     description: "Separate work/personal Git identities. Keys, SSH aliases, and guards."
     license: "MIT"
