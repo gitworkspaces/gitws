@@ -8,7 +8,7 @@ before:
 
 builds:
   - id: gitws
-    main: ./cmd/gws
+    main: ./cmd/gitws
     binary: gitws
     env: [CGO_ENABLED=0]
     goos: [darwin, linux]
