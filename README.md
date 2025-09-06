@@ -27,6 +27,26 @@ gitws clone personal myorg/myrepo
 gitws status
 ```
 
+## Demo
+
+See gitws in action:
+
+### Initialize
+
+![Demo 1](docs/demo-1.gif)
+
+### Status
+
+![Demo 2](docs/demo-2.gif)
+
+### Doctor
+
+![Demo 3](docs/demo-3.gif)
+
+### Fix
+
+![Demo 4](docs/demo-4.gif)
+
 ## Features
 
 - **🔑 Per-workspace SSH keys**: Automatic generation and management
